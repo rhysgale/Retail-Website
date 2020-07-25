@@ -12,6 +12,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OrdersDb;
 using ProductsDb;
+using Services.Interfaces;
+using Services.Services;
 
 namespace RetailWebsite
 {
@@ -29,6 +31,8 @@ namespace RetailWebsite
         {
             services.AddDbContext<OrdersContext>(options => options.UseSqlServer(Configuration.GetConnectionString("OrdersConnection")));
             services.AddDbContext<ProductsContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ProductsConnection")));
+
+            services.AddTransient<ICollectionService, CollectionService>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {

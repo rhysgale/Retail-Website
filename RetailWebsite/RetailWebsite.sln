@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29209.62
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RetailWebsite", "RetailWebsite\RetailWebsite.csproj", "{93DAB534-BDA0-480A-9428-1B1433503F4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RetailWebsite", "RetailWebsite\RetailWebsite.csproj", "{93DAB534-BDA0-480A-9428-1B1433503F4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductsDb", "ProductsDb\ProductsDb.csproj", "{A649FAEA-F70B-4069-AE3C-5AB308AC9979}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductsDb", "ProductsDb\ProductsDb.csproj", "{A649FAEA-F70B-4069-AE3C-5AB308AC9979}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrdersDb", "OrdersDb\OrdersDb.csproj", "{6C3E1A45-89E0-42D4-A731-AAF75C91BFFA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrdersDb", "OrdersDb\OrdersDb.csproj", "{6C3E1A45-89E0-42D4-A731-AAF75C91BFFA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{33183D29-85C7-4D4D-A61B-0814041B4938}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{6C3E1A45-89E0-42D4-A731-AAF75C91BFFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C3E1A45-89E0-42D4-A731-AAF75C91BFFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C3E1A45-89E0-42D4-A731-AAF75C91BFFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33183D29-85C7-4D4D-A61B-0814041B4938}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33183D29-85C7-4D4D-A61B-0814041B4938}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33183D29-85C7-4D4D-A61B-0814041B4938}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33183D29-85C7-4D4D-A61B-0814041B4938}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
