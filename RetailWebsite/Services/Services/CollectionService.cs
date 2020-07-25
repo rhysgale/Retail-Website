@@ -28,7 +28,8 @@ namespace Services.Services
                                 {
                                     ProductName = x.Name,
                                     MainImage = x.MainImageUrl,
-                                    ProductDescription = x.Description
+                                    ProductDescription = x.Description,
+                                    ProductId = x.Id
                                 });
 
             return products;

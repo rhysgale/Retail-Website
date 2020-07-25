@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Models.DTO;
 using Services.Interfaces;
 
 namespace RetailWebsite.Controllers.ApiControllers
@@ -20,9 +18,9 @@ namespace RetailWebsite.Controllers.ApiControllers
         }
 
         [HttpGet]
-        public void Collection(Guid categoryId)
+        public IEnumerable<ProductDTO> Collection(Guid categoryId)
         {
-
+            return _collectionService.GetCollection(categoryId);
         }
     }
 }

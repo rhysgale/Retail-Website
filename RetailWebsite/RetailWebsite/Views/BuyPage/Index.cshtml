@@ -1,0 +1,12 @@
+﻿@model Models.ViewModels.BuyPageViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@Model.Product.ProductName</h1>
+    <br />
+    <p>@Model.Product.ProductDescription</p>
+    <br />
+    <button class="btn btn-warning">Add to Basket</button>
+</div>

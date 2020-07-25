@@ -33,6 +33,7 @@ namespace RetailWebsite
             services.AddDbContext<ProductsContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ProductsConnection")));
 
             services.AddTransient<ICollectionService, CollectionService>();
+            services.AddTransient<IProductService, ProductService>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -65,9 +66,8 @@ namespace RetailWebsite
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute(name: "product page", template: "{controller=BuyPage}/{action=Index}/{id}");
             });
         }
     }
