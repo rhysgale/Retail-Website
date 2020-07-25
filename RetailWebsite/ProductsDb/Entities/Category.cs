@@ -11,6 +11,6 @@ namespace ProductsDb.Entities
         public string CategoryName { get; set; }
 
         //Virtual References
-        public virtual IEnumerable<Product> Products { get; set; }  //Many to Many relationship, ProductCategory
+        public virtual IEnumerable<ProductCategory> ProductLinks { get; set; }  //Many to Many relationship, ProductCategory
     }
 }

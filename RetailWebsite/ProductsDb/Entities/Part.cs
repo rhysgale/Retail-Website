@@ -15,6 +15,6 @@ namespace ProductsDb.Entities
         public string PartImageUrl { get; set; }
 
         //Virtual Links
-        public virtual IEnumerable<Product> Products { get; set; }
+        public virtual IEnumerable<PartProduct> ProductLinks { get; set; }
     }
 }

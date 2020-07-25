@@ -13,6 +13,17 @@ namespace ProductsDb
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<PartProduct>()
+                            .HasKey(c => new { c.PartId, c.ProductId });
+
+            modelBuilder.Entity<ProductCategory>()
+                            .HasKey(c => new { c.ProductId, c.CategoryId });
+
+            base.OnModelCreating(modelBuilder);
+        }
+
         public DbSet<Product> Products { get; set; }
 
         public DbSet<ProductImage> ProductImages { get; set; }

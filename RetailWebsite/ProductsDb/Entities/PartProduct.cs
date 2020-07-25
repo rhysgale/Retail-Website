@@ -11,8 +11,8 @@ namespace ProductsDb.Entities
         public Guid ProductId { get; set; }
 
         //Virtual Links
-        public Part Part { get; set; }
+        public virtual Part Part { get; set; }
 
-        public Product Product { get; set; }
+        public virtual Product Product { get; set; }
     }
 }
