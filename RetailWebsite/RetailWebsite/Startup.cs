@@ -27,8 +27,8 @@ namespace RetailWebsite
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<OrdersContext>(options => options.UseSqlServer("Orders"));
-            services.AddDbContext<ProductsContext>(options => options.UseSqlServer("Product"));
+            services.AddDbContext<OrdersContext>(options => options.UseSqlServer(Configuration.GetConnectionString("OrdersConnection")));
+            services.AddDbContext<ProductsContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ProductsConnection")));
 
             services.Configure<CookiePolicyOptions>(options =>
             {

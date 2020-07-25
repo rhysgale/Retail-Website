@@ -10,7 +10,7 @@ using OrdersDb;
 namespace OrdersDb.Migrations
 {
     [DbContext(typeof(OrdersContext))]
-    [Migration("20200725214432_InitialMigration")]
+    [Migration("20200725223728_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -72,15 +72,11 @@ namespace OrdersDb.Migrations
 
                     b.Property<Guid>("AddressId");
 
-                    b.Property<Guid>("CustomerId");
-
                     b.Property<DateTime>("DateOrderPlaced");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AddressId");
-
-                    b.HasIndex("CustomerId");
 
                     b.ToTable("Orders");
                 });
@@ -108,15 +104,11 @@ namespace OrdersDb.Migrations
 
                     b.Property<Guid>("AddressId");
 
-                    b.Property<Guid>("CustomerId");
-
                     b.Property<DateTime>("DateOrderPlaced");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AddressId");
-
-                    b.HasIndex("CustomerId");
 
                     b.ToTable("PartOrders");
                 });
@@ -151,11 +143,6 @@ namespace OrdersDb.Migrations
                         .WithMany()
                         .HasForeignKey("AddressId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("OrdersDb.Entities.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("OrdersDb.Entities.OrderDetail", b =>
@@ -171,11 +158,6 @@ namespace OrdersDb.Migrations
                     b.HasOne("OrdersDb.Entities.Address", "Address")
                         .WithMany()
                         .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("OrdersDb.Entities.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

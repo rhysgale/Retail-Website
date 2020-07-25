@@ -8,15 +8,12 @@ namespace OrdersDb.Entities
     {
         public Guid Id { get; set; }
 
-        public Guid CustomerId { get; set; }
-
         public Guid AddressId { get; set; }
 
         public DateTime DateOrderPlaced { get; set; }
 
         //Virtual links
         public virtual Address Address { get; set; }
-        public virtual Customer Customer { get; set; }
         public virtual IEnumerable<OrderDetail> OrderDetails { get; set; }
     }
 }

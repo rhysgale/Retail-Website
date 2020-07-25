@@ -51,7 +51,6 @@ namespace OrdersDb.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    CustomerId = table.Column<Guid>(nullable: false),
                     AddressId = table.Column<Guid>(nullable: false),
                     DateOrderPlaced = table.Column<DateTime>(nullable: false)
                 },
@@ -64,12 +63,6 @@ namespace OrdersDb.Migrations
                         principalTable: "Addresses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Orders_Customers_CustomerId",
-                        column: x => x.CustomerId,
-                        principalTable: "Customers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -77,7 +70,6 @@ namespace OrdersDb.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    CustomerId = table.Column<Guid>(nullable: false),
                     AddressId = table.Column<Guid>(nullable: false),
                     DateOrderPlaced = table.Column<DateTime>(nullable: false)
                 },
@@ -88,12 +80,6 @@ namespace OrdersDb.Migrations
                         name: "FK_PartOrders_Addresses_AddressId",
                         column: x => x.AddressId,
                         principalTable: "Addresses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_PartOrders_Customers_CustomerId",
-                        column: x => x.CustomerId,
-                        principalTable: "Customers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -152,11 +138,6 @@ namespace OrdersDb.Migrations
                 column: "AddressId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Orders_CustomerId",
-                table: "Orders",
-                column: "CustomerId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_PartOrderDetails_OrderId",
                 table: "PartOrderDetails",
                 column: "OrderId");
@@ -165,11 +146,6 @@ namespace OrdersDb.Migrations
                 name: "IX_PartOrders_AddressId",
                 table: "PartOrders",
                 column: "AddressId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PartOrders_CustomerId",
-                table: "PartOrders",
-                column: "CustomerId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
