@@ -3,7 +3,7 @@
     ViewData["Title"] = "ViewDetails";
 }
 
-<h1>ViewDetails</h1>
+<h1>Order Tracking</h1>
 
 @foreach (var line in Model.DetailLines)
 {
@@ -11,8 +11,21 @@
         <div class="card border-primary w-100">
             <div class="card-header">@line.ProductName</div>
             <div class="card-body">
+                <h4>Status: In Progress</h4>
+                <h4>Estimated Dispatch: Next Year</h4>
                 <p class="card-text">Total Quantity: @line.Quantity</p>
                 <p class="card-text">Total Cost: @line.LineTotalCost</p>
+            </div>
+            <div class="card-footer">
+                <form method="post" action="/parts/detailselected">
+                    <input type="hidden" name="orderReference" value="@Model.OrderReference"/>
+                    <input type="hidden" name="productId" value="@line.ProductId"/>
+                    <input type ="hidden" name="emailAddress" value="@Model.Email"/>
+
+                    <button class="btn btn-outline-warning" type="submit">
+                        Missing Parts
+                    </button>
+                </form>
             </div>
         </div>
     </div>

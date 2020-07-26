@@ -30,7 +30,25 @@ namespace RetailWebsite.Controllers.MvControllers
 
             var vm = new ViewOrderDetailsViewModel()
             {
-                DetailLines = details
+                DetailLines = details,
+                Email = request.EmailAddress,
+                OrderReference = request.OrderReference
+            };
+
+            return View(vm);
+        }
+
+        [HttpPost]
+        public IActionResult DetailSelected(DetailSelectedRequest request)
+        {
+            var parts = _partOrderingService.GetPartsForDetail(request);
+
+            var vm = new ViewPartsViewModel()
+            {
+                Parts = parts,
+                EmailAddress = request.EmailAddress,
+                OrderId = request.OrderReference,
+                ProductId = request.ProductId
             };
 
             return View(vm);

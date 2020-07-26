@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Models.DTO;
+using Models.Request;
 using OrdersDb;
 using ProductsDb;
 using Services.Interfaces;
@@ -43,6 +44,31 @@ namespace Services.Services
             }
 
             return list;
+        }
+
+        public IEnumerable<PartsDTO> GetPartsForDetail(DetailSelectedRequest request)
+        {
+            var detail = _ordersContext.OrderDetails
+                                        .Include(x => x.Order)
+                                        .ThenInclude(x => x.Address)
+                                        .ThenInclude(x => x.Customer)
+                                        .FirstOrDefault(x => x.ProductId == request.ProductId && x.Order.Address.Customer.Email == request.EmailAddress);
+
+            if (detail == null)
+                return null;
+
+            var product = _productsContext.Products.Include(x => x.PartLinks)
+                                            .ThenInclude(x => x.Part)
+                                            .First(x => x.Id == request.ProductId);
+
+            var parts = product.PartLinks.Select(x => x.Part).Select(x => new PartsDTO()
+            {
+                PartId = x.Id,
+                PartImage = x.PartImageUrl,
+                PartName = x.PartName
+            });
+
+            return parts;
         }
     }
 }

@@ -1,0 +1,25 @@
+﻿@model Models.ViewModels.ViewPartsViewModel
+@{
+    ViewData["Title"] = "DetailSelected";
+}
+
+<h1>Parts Available for Product</h1>
+
+@if (Model.Parts != null)
+{
+    foreach (var part in Model.Parts)
+    {
+        <div class="row">
+            <div class="card border-primary w-100">
+                <img src="@part.PartImage" />
+                <div class="card-header">@part.PartName</div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div>
+        <label>There are no parts available for this product. Please contact customer services.</label>
+    </div>
+}
