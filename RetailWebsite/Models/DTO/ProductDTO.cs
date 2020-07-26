@@ -11,5 +11,7 @@ namespace Models.DTO
         public string ProductDescription { get; set; }
 
         public string MainImage { get; set; }
+
+        public decimal Price { get; set; }
     }
 }

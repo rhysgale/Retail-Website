@@ -4,10 +4,12 @@
 }
 
 <div class="text-center">
+    <img src="@Model.Product.MainImage"/>
     <h1 class="display-4">@Model.Product.ProductName</h1>
     <br />
     <p>@Model.Product.ProductDescription</p>
     <br />
+    <p>Item Cost: £@Model.Product.Price</p>
 
     <form action="/BuyPage/AddToBasket?productId=@Model.Product.ProductId" method="post">
         <button class="btn btn-warning" type="submit">Add to Basket</button>

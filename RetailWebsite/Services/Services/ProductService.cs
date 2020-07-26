@@ -26,7 +26,8 @@ namespace Services.Services
                                         MainImage = x.MainImageUrl,
                                         ProductDescription = x.Description,
                                         ProductId = x.Id,
-                                        ProductName = x.Name
+                                        ProductName = x.Name,
+                                        Price = x.Price
                                     })
                                     .First();
         }

@@ -35,7 +35,8 @@ namespace Services.Services
                 ProductName = x.Name,
                 MainImage = x.MainImageUrl,
                 ProductDescription = x.Description,
-                ProductId = x.Id
+                ProductId = x.Id,
+                Price = x.Price
             });
         }
     }
