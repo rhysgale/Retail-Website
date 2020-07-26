@@ -15,10 +15,11 @@ namespace Services.Services
         private readonly CartContext _cartContext;
         private readonly ProductsContext _productContext;
 
-        public OrderService(OrdersContext orderContext, CartContext cartContext)
+        public OrderService(OrdersContext orderContext, CartContext cartContext, ProductsContext productContext)
         {
             _ordersContext = orderContext;
             _cartContext = cartContext;
+            _productContext = productContext;
         }
 
         public Guid PlaceOrder(Guid sessionId, PlaceOrderRequest request)
