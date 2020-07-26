@@ -7,7 +7,7 @@
     <div class="card-group">
         @foreach (var product in Model.Products)
         {
-            <div class="card" style="width: 18rem;" onclick="cardClicked('@product.ProductId')">
+            <div class="card" style="width: 18rem;" onclick="window.location.href = '/buypage/index/@product.ProductId'">
                 <img class="card-img-top" src="@product.MainImage" alt="Picture">
                 <div class="card-body">
                     <h5 class="card-title">@product.ProductName</h5>
@@ -19,10 +19,3 @@
         }
     </div>
 </div>
-
-
-<script type="text/javascript">
-    var cardClicked = function (productId) {
-        window.location.href = '/buypage/index/' + productId;
-    };
-</script>

@@ -13,9 +13,12 @@
             <div class="card border-primary w-100">
                 <img src="@part.PartImage" />
                 <div class="card-header">@part.PartName</div>
+                Quantity Needed: <input type="number" onchange="updateQuantity(this, '@part.PartId')" />
             </div>
         </div>
     }
+
+    <button class="btn btn-success" onclick="confirmOrder">Confirm Parts Order</button>
 }
 else
 {
@@ -23,3 +26,13 @@ else
         <label>There are no parts available for this product. Please contact customer services.</label>
     </div>
 }
+
+
+<script type="text/javascript">
+    var partList = JSON.parse('@Html.Raw(Json.Serialize(Model.Parts))');
+    var orderRef = '@Model.OrderId';
+    var email = '@Model.EmailAddress';
+    var productId = '@Model.ProductId';
+</script>
+
+<script src="~/custom/partorder.js"></script>
