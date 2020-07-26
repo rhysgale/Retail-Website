@@ -12,6 +12,8 @@ namespace OrdersDb.Entities
 
         public Guid ProductId { get; set; }
 
+        public int Quantity { get; set; }
+
         //Virtual product links
         public virtual Order Order { get; set; }
     }

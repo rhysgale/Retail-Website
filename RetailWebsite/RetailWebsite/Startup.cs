@@ -47,6 +47,7 @@ namespace RetailWebsite
             services.AddTransient<ICollectionService, CollectionService>();
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<ICartService, CartService>();
+            services.AddTransient<IOrderService, OrderService>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {

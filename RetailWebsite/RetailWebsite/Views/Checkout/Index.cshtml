@@ -14,17 +14,46 @@
     }
     else
     {
-        <div class="card-group">
-            @foreach (var line in Model.DetailLines)
-            {
-                <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+        @foreach (var line in Model.DetailLines)
+        {
+            <div class="row">
+                <div class="card border-primary w-100">
                     <div class="card-header">@line.ProductName</div>
                     <div class="card-body">
                         <p class="card-text">Total Quantity: @line.Quantity</p>
                         <p class="card-text">Total Cost: @line.LineTotalCost</p>
                     </div>
                 </div>
-            }
+            </div>
+        }
+        <div class="row">
+            <br />
+            <br />
+            <br />
         </div>
+        <div class="row">
+            <div class="col-10">
+            </div>
+            <div class="col-2">
+                <div class="card border-info text-right">
+                    Total Items: @Model.ItemsInCart
+                    <br />
+                    <br />
+                    Delivery Charge: £0
+                    <br />
+                    <br />
+                    Total Cost: £@Model.TotalCost
+                </div>
+            </div>
+        </div>
+
+        <br />
+        <br />
+
+        <form method="post" action="/checkout/enterdetails">
+            <button class="btn btn-success">
+                Checkout and Enter Payment Details >
+            </button>
+        </form>
     }
 </div>

@@ -1,0 +1,20 @@
+﻿@model Models.ViewModels.CustomerCartViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+    <form method="post" action="/checkout/PlaceOrder">
+        First name: <input name="FirstName" />
+        Last Name: <input name="LastName" />
+
+        Email: <input name="Email" />
+        Phone Number: <input name="PhoneNumber" />
+
+        Address1: <input name="Address1" />
+        Address2: <input name="Address2" />
+        Address3: <input name="Address3" />
+        Address4: <input name="Address4" />
+        PostCode: <input name="PostCode" />
+
+        <button type="submit" class="btn btn-success">Confirm Order</button>
+    </form>
