@@ -52,7 +52,7 @@ namespace Services.Services
             return newSessionId;
         }
 
-        public CustomerCartDTO GetCustomerCart(Guid sessionId)
+        public IEnumerable<DetailLineDTO> GetCustomerCart(Guid sessionId)
         {
             //Get customer cart details
             var details = _cartContext.CartSessionDetails.Where(x => x.CartSessionId == sessionId)
@@ -80,10 +80,7 @@ namespace Services.Services
                 detailLines.Add(detailLine);
             }
 
-            return new CustomerCartDTO()
-            {
-                DetailLines = detailLines
-            };
+            return detailLines;
         }
 
         private CartSession GetSession(Guid sessionId)

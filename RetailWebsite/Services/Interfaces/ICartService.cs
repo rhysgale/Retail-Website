@@ -1,5 +1,6 @@
 ﻿using Models.DTO;
 using System;
+using System.Collections.Generic;
 
 namespace Services.Interfaces
 {
@@ -7,6 +8,6 @@ namespace Services.Interfaces
     {
         Guid AddToBasket(Guid? sessionId, Guid productId);
 
-        CustomerCartDTO GetCustomerCart(Guid sessionId);
+        IEnumerable<DetailLineDTO> GetCustomerCart(Guid sessionId);
     }
 }

@@ -1,15 +1,30 @@
-﻿@model Models.ViewModels.BuyPageViewModel
+﻿@model Models.ViewModels.CustomerCartViewModel
 @{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">@Model.Product.ProductName</h1>
-    <br />
-    <p>@Model.Product.ProductDescription</p>
-    <br />
+    <h1 class="display-4">Checkout Page</h1>
 
-    <form action="/BuyPage/AddToBasket?productId=@Model.Product.ProductId" method="post">
-        <button class="btn btn-warning" type="submit">Add to Basket</button>
-    </form>
+    @if (Model.DetailLines == null || Model.DetailLines.Count() <= 0)
+    {
+        <div>
+            <label>Your shopping basket is currently empty</label>
+        </div>
+    }
+    else
+    {
+        <div class="card-group">
+            @foreach (var line in Model.DetailLines)
+            {
+                <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                    <div class="card-header">@line.ProductName</div>
+                    <div class="card-body">
+                        <p class="card-text">Total Quantity: @line.Quantity</p>
+                        <p class="card-text">Total Cost: @line.LineTotalCost</p>
+                    </div>
+                </div>
+            }
+        </div>
+    }
 </div>
