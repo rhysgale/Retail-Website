@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CartDb;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -29,11 +30,23 @@ namespace RetailWebsite
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.Cookie.Name = "Basket";
+                options.IdleTimeout = TimeSpan.FromHours(1); //Basket valid for an hour
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
             services.AddDbContext<OrdersContext>(options => options.UseSqlServer(Configuration.GetConnectionString("OrdersConnection")));
             services.AddDbContext<ProductsContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ProductsConnection")));
+            services.AddDbContext<CartContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CartConnection")));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddTransient<ICollectionService, CollectionService>();
             services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<ICartService, CartService>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -64,11 +77,15 @@ namespace RetailWebsite
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
+            app.UseSession();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
-                routes.MapRoute(name: "product page", template: "{controller=BuyPage}/{action=Index}/{id}");
                 routes.MapRoute(name: "collection page", template: "{controller=CollectionPage}/{action=Index}/{id}");
+                routes.MapRoute(name: "buypagepost", template: "{controller=BuyPage}/{action}/{id}");
+                routes.MapRoute(name: "buypagepost", template: "{controller=BuyPage}/{action=AddToBasket}/{productId}");
+                routes.MapRoute(name: "basketpage", template: "{controller=Checkout}/{action=Index}");
             });
         }
     }

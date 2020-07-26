@@ -14,11 +14,11 @@ namespace RetailWebsite.Controllers.MvControllers
             _collectionService = collectionService;
         }
 
-        public IActionResult Index(Guid? id)
+        public IActionResult Index(Guid? categoryId)
         {
             var vm = new CollectionPageViewModel()
             {
-                Products = _collectionService.GetCollection(id)
+                Products = _collectionService.GetCollection(categoryId)
             };
 
             return View(vm);
