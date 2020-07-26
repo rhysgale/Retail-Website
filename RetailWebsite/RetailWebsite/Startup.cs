@@ -48,6 +48,7 @@ namespace RetailWebsite
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<ICartService, CartService>();
             services.AddTransient<IOrderService, OrderService>();
+            services.AddTransient<IPartOrderingService, PartOrderingService>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -87,6 +88,7 @@ namespace RetailWebsite
                 routes.MapRoute(name: "buypagepost", template: "{controller=BuyPage}/{action}/{id}");
                 routes.MapRoute(name: "buypagepost", template: "{controller=BuyPage}/{action=AddToBasket}/{productId}");
                 routes.MapRoute(name: "basketpage", template: "{controller=Checkout}/{action=Index}");
+                routes.MapRoute(name: "parts", template: "{controller=Parts}/{action}");
             });
         }
     }

@@ -1,0 +1,19 @@
+﻿@model Models.ViewModels.ViewOrderDetailsViewModel
+@{
+    ViewData["Title"] = "ViewDetails";
+}
+
+<h1>ViewDetails</h1>
+
+@foreach (var line in Model.DetailLines)
+{
+    <div class="row">
+        <div class="card border-primary w-100">
+            <div class="card-header">@line.ProductName</div>
+            <div class="card-body">
+                <p class="card-text">Total Quantity: @line.Quantity</p>
+                <p class="card-text">Total Cost: @line.LineTotalCost</p>
+            </div>
+        </div>
+    </div>
+}

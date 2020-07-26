@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Part Ordering</h1>
+
+<p>To help us find the parts for your order. Please enter your Order ID and your Email</p>
+
+
+<form method="post" action="/parts/viewdetails">
+    Order Ref: <input name="orderReference" />
+    <br />
+    <br />
+    Email Address: <input name="emailAddress" />
+    <br />
+    <br />
+
+    <button class="btn btn-success">
+        Find Order
+    </button>
+</form>

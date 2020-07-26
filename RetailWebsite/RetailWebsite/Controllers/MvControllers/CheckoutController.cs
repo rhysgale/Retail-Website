@@ -76,6 +76,8 @@ namespace RetailWebsite.Controllers.MvControllers
 
             var orderId = _orderService.PlaceOrder(sessionId.Value, request);
 
+            HttpContext.Session.Clear();
+
             return RedirectToAction("ConfirmationPage", new { orderId });
         }
     }
