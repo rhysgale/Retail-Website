@@ -68,6 +68,7 @@ namespace RetailWebsite
             {
                 routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
                 routes.MapRoute(name: "product page", template: "{controller=BuyPage}/{action=Index}/{id}");
+                routes.MapRoute(name: "collection page", template: "{controller=CollectionPage}/{action=Index}/{id}");
             });
         }
     }

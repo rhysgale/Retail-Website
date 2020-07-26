@@ -6,25 +6,25 @@ namespace ProductsDb.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<float>(
+            migrationBuilder.AddColumn<decimal>(
                 name: "Depth",
                 table: "Products",
                 nullable: false,
                 defaultValue: 0m);
 
-            migrationBuilder.AddColumn<float>(
+            migrationBuilder.AddColumn<decimal>(
                 name: "Height",
                 table: "Products",
                 nullable: false,
                 defaultValue: 0m);
 
-            migrationBuilder.AddColumn<float>(
+            migrationBuilder.AddColumn<decimal>(
                 name: "Price",
                 table: "Products",
                 nullable: false,
                 defaultValue: 0m);
 
-            migrationBuilder.AddColumn<float>(
+            migrationBuilder.AddColumn<decimal>(
                 name: "Width",
                 table: "Products",
                 nullable: false,

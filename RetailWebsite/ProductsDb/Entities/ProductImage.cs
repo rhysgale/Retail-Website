@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ProductsDb.Entities
 {
@@ -14,6 +12,6 @@ namespace ProductsDb.Entities
 
 
         //Virtual reference links
-        public virtual Product LinkedProduct { get; set; }
+        public virtual Product LinkedToProduct { get; set; }
     }
 }

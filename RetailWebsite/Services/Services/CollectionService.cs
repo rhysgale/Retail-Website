@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Models.DTO;
 using ProductsDb;
+using ProductsDb.Entities;
 using Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -17,22 +18,25 @@ namespace Services.Services
             _productsContext = productsContext;
         }
 
-        public IEnumerable<ProductDTO> GetCollection(Guid categoryId)
+        public IEnumerable<ProductDTO> GetCollection(Guid? categoryId)
         {
             //Get products linked to the category
-            var products = _productsContext.Products
+            IEnumerable<Product> products = _productsContext.Products
                                 .Include(x => x.CategoryLinks)
-                                .ThenInclude(x => x.Category)
-                                .Where(x => x.CategoryLinks.Any(y => y.CategoryId == categoryId))
-                                .Select(x => new ProductDTO()
-                                {
-                                    ProductName = x.Name,
-                                    MainImage = x.MainImageUrl,
-                                    ProductDescription = x.Description,
-                                    ProductId = x.Id
-                                });
+                                .ThenInclude(x => x.Category);
 
-            return products;
+            if (categoryId != null)
+            {
+                products = products.Where(x => x.CategoryLinks.Any(y => y.CategoryId == categoryId)).AsEnumerable();
+            }
+                                
+            return products.Select(x => new ProductDTO()
+            {
+                ProductName = x.Name,
+                MainImage = x.MainImageUrl,
+                ProductDescription = x.Description,
+                ProductId = x.Id
+            });
         }
     }
 }

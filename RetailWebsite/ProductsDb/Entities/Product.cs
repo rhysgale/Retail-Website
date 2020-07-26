@@ -10,13 +10,13 @@ namespace ProductsDb.Entities
 
         public string Name { get; set; }
 
-        public float Price { get; set; }
+        public decimal Price { get; set; }
 
-        public float Width { get; set; }
+        public decimal Width { get; set; }
 
-        public float Height { get; set; }
+        public decimal Height { get; set; }
 
-        public float Depth { get; set; }
+        public decimal Depth { get; set; }
 
         public string Description { get; set; }
 

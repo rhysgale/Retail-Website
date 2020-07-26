@@ -7,6 +7,6 @@ namespace Services.Interfaces
 {
     public interface ICollectionService
     {
-        IEnumerable<ProductDTO> GetCollection(Guid categoryId);
+        IEnumerable<ProductDTO> GetCollection(Guid? categoryId);
     }
 }
