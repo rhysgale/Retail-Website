@@ -17,11 +17,11 @@ namespace RetailWebsite.Controllers.MvControllers
             _cartService = cartService;
         }
 
-        public IActionResult Index(Guid id)
+        public IActionResult Index(Guid productId)
         {
             var vm = new BuyPageViewModel()
             {
-                Product = _productService.GetProduct(id)
+                Product = _productService.GetProduct(productId)
             };
 
             return View(vm);
@@ -30,18 +30,9 @@ namespace RetailWebsite.Controllers.MvControllers
         [HttpPost]
         public IActionResult AddToBasket(Guid productId) //productID
         {
-            Byte[] value = null;
-            int? basketCount = HttpContext.Session.GetInt32("BasketCount");
-            if (basketCount != null)
-            {
-                basketCount++;
-                HttpContext.Session.SetInt32("BasketCount", basketCount.Value);
-            }
-            else
-                HttpContext.Session.SetInt32("BasketCount", 1); //Only one if session doesn't already exist!
-
-
-            HttpContext.Session.TryGetValue("SessionId", out value);
+            int basketCount = (HttpContext.Session.GetInt32("BasketCount") ?? 0) + 1;
+            HttpContext.Session.SetInt32("BasketCount", basketCount);
+            HttpContext.Session.TryGetValue("SessionId", out byte[] value);
 
             Guid? sessionId = null;
             if (value != null)
