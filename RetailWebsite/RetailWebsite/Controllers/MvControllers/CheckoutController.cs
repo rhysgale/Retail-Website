@@ -22,8 +22,7 @@ namespace RetailWebsite.Controllers.MvControllers
 
         public IActionResult Index()
         {
-            Byte[] sessionByteArray;
-            HttpContext.Session.TryGetValue("SessionId", out sessionByteArray);
+            HttpContext.Session.TryGetValue("SessionId", out byte[] sessionByteArray);
 
             Guid? sessionId;
             if (sessionByteArray != null)
@@ -55,7 +54,6 @@ namespace RetailWebsite.Controllers.MvControllers
             Byte[] sessionByteArray;
             HttpContext.Session.TryGetValue("SessionId", out sessionByteArray);
 
-            Guid? sessionId;
             if (sessionByteArray == null)
                 return RedirectToAction("Index"); //empty
 
@@ -65,8 +63,7 @@ namespace RetailWebsite.Controllers.MvControllers
         [HttpPost]
         public IActionResult PlaceOrder(PlaceOrderRequest request)
         {
-            Byte[] sessionByteArray;
-            HttpContext.Session.TryGetValue("SessionId", out sessionByteArray);
+            HttpContext.Session.TryGetValue("SessionId", out byte[] sessionByteArray);
 
             Guid? sessionId;
             if (sessionByteArray != null)

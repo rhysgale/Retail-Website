@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using CartDb;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using OrdersDb;
 using ProductsDb;
 using Services.Interfaces;
@@ -58,11 +55,11 @@ namespace RetailWebsite
             });
 
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -80,15 +77,15 @@ namespace RetailWebsite
             app.UseCookiePolicy();
 
             app.UseSession();
-
-            app.UseMvc(routes =>
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
-                routes.MapRoute(name: "collection page", template: "{controller=CollectionPage}/{action=Index}/{id}");
-                routes.MapRoute(name: "buypagepost", template: "{controller=BuyPage}/{action}/{id}");
-                routes.MapRoute(name: "buypagepost", template: "{controller=BuyPage}/{action=AddToBasket}/{productId}");
-                routes.MapRoute(name: "basketpage", template: "{controller=Checkout}/{action=Index}");
-                routes.MapRoute(name: "parts", template: "{controller=Parts}/{action}");
+                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute("collection page","{controller=CollectionPage}/{action=Index}/{id}");
+                endpoints.MapControllerRoute("buypagepost", "{controller=BuyPage}/{action}/{id}");
+                endpoints.MapControllerRoute("buypagepost", "{controller=BuyPage}/{action=AddToBasket}/{productId}");
+                endpoints.MapControllerRoute("basketpage", "{controller=Checkout}/{action=Index}");
+                endpoints.MapControllerRoute("parts", "{controller=Parts}/{action}");
             });
         }
     }
