@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Models.Request;
 using Models.ViewModels;
 using Services.Interfaces;
 
@@ -28,7 +29,7 @@ namespace RetailWebsite.Controllers.MvControllers
         }
 
         [HttpPost]
-        public IActionResult AddToBasket(Guid productId) //productID
+        public IActionResult AddToBasket(AddToBasketRequest request) //productID
         {
             int basketCount = (HttpContext.Session.GetInt32("BasketCount") ?? 0) + 1;
             HttpContext.Session.SetInt32("BasketCount", basketCount);
@@ -38,11 +39,11 @@ namespace RetailWebsite.Controllers.MvControllers
             if (value != null)
                 sessionId = new Guid(value);
 
-            var newSessionId = _cartService.AddToBasket(sessionId, productId);
+            var newSessionId = _cartService.AddToBasket(sessionId, request.ProductId);
 
             HttpContext.Session.Set("SessionId", newSessionId.ToByteArray());
 
-            return RedirectToAction("Index", new { id = productId });
+            return RedirectToAction("Index", new { productId = request.ProductId });
         }
     }
 }

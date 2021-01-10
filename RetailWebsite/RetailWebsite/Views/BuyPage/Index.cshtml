@@ -11,7 +11,9 @@
     <br />
     <p>Item Cost: £@Model.Product.Price</p>
 
-    <form action="/BuyPage/AddToBasket?productId=@Model.Product.ProductId" method="post">
+    @using(Html.BeginForm("AddToBasket", "BuyPage", FormMethod.Post))
+    {
+        <input type="hidden" value="@Model.Product.ProductId" name="ProductId" />
         <button class="btn btn-warning" type="submit">Add to Basket</button>
-    </form>
+    }
 </div>
